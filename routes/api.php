@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RubroController;
 use App\Http\Controllers\Api\FotoController;
 use App\Http\Controllers\Api\PlantillaController;
+use App\Http\Controllers\Api\PromocionController;
+use App\Http\Controllers\Api\EstablecimientoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,5 @@ Route::post('/subirFotoParaModelar',[FotoController::class, 'subirFotoParaModela
 Route::post('/subirNuevaFoto',[FotoController::class, 'subirNuevaFoto']);
 Route::get('/getPlantillas',[PlantillaController::class, 'listado']);
 Route::get('/mostrarFotoPlantilla/{ruta}',[PlantillaController::class, 'mostrarFotoPlantilla']);
+Route::post('/subirLogo',[EstablecimientoController::class, 'subirLogo']);
+Route::get('/mostrarLogo/{ruta}',[EstablecimientoController::class, 'mostrarLogo']);
