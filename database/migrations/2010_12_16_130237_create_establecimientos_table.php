@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('horario_atencion');
             $table->string('direccion');
             $table->string('telefono',15);
-            $table->string('ruta_logo');
+            $table->string('ruta_logo')->nullable();
             $table->string('estado');
             $table->timestamps();
         });

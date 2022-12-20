@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             RolSeeder::class,
             EstablecimientoSeeder::class,
             RolSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            PlantillaSeeder::class
          ]);
     }
 }

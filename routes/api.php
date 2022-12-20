@@ -33,3 +33,4 @@ Route::get('/getPlantillas',[PlantillaController::class, 'listado']);
 Route::get('/mostrarFotoPlantilla/{ruta}',[PlantillaController::class, 'mostrarFotoPlantilla']);
 Route::post('/subirLogo',[EstablecimientoController::class, 'subirLogo']);
 Route::get('/mostrarLogo/{ruta}',[EstablecimientoController::class, 'mostrarLogo']);
+Route::post('/guardarPromocion',[PromocionController::class, 'guardarPromocion']);

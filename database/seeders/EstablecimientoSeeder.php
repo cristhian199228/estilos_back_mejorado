@@ -20,8 +20,8 @@ class EstablecimientoSeeder extends Seeder
             [
                 'rubro_id' => '1',
                 'ruc' => '204548254545',
-                'razon_social' => 'FAMILIA COMERCOAL',
-                'nombre_comercial' => 'RICO POLLLO',
+                'razon_social' => 'FAMILIA COMERCIAL',
+                'nombre_comercial' => 'RICO POLLO',
                 'horario_atencion' => 'de lunes a viernes',
                 'direccion' => 'calle S/N',
                 'telefono' => '054383730',
