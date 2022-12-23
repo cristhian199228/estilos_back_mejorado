@@ -23,14 +23,25 @@ use App\Http\Controllers\Api\EstablecimientoController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/login',[UserController::class, 'login']);
-Route::get('/getRubros',[RubroController::class, 'listado']);
-Route::get('/getFotoRubro/{id}',[FotoController::class, 'getFotoRubro']);
-Route::get('/mostrarFoto/{ruta}',[FotoController::class, 'mostrarFoto']);
-Route::post('/subirFotoParaModelar',[FotoController::class, 'subirFotoParaModelar']);
-Route::post('/subirNuevaFoto',[FotoController::class, 'subirNuevaFoto']);
-Route::get('/getPlantillas',[PlantillaController::class, 'listado']);
-Route::get('/mostrarFotoPlantilla/{ruta}',[PlantillaController::class, 'mostrarFotoPlantilla']);
-Route::post('/subirLogo',[EstablecimientoController::class, 'subirLogo']);
-Route::get('/mostrarLogo/{ruta}',[EstablecimientoController::class, 'mostrarLogo']);
-Route::post('/guardarPromocion',[PromocionController::class, 'guardarPromocion']);
+
+/////////////////////ADMIN/////////////////////////////////////////
+
+Route::post('/login', [UserController::class, 'login']);
+Route::get('/getRubros', [RubroController::class, 'listado']);
+Route::get('/getFotoRubro/{id}', [FotoController::class, 'getFotoRubro']);
+Route::get('/mostrarFoto/{ruta}', [FotoController::class, 'mostrarFoto']);
+Route::post('/subirFotoParaModelar', [FotoController::class, 'subirFotoParaModelar']);
+Route::post('/subirNuevaFoto', [FotoController::class, 'subirNuevaFoto']);
+Route::get('/getPlantillas', [PlantillaController::class, 'listado']);
+Route::get('/mostrarFotoPlantilla/{ruta}', [PlantillaController::class, 'mostrarFotoPlantilla']);
+Route::post('/subirLogo', [EstablecimientoController::class, 'subirLogo']);
+Route::get('/mostrarLogo/{ruta}', [EstablecimientoController::class, 'mostrarLogo']);
+Route::post('/guardarPromocion', [PromocionController::class, 'guardarPromocion']);
+
+/////////////////////ADMIN/////////////////////////////////////////
+
+Route::post('/loginadmin', [UserController::class, 'loginadmin']);
+Route::get('/getPromociones/{finicio}/{ffinal}', [PromocionController::class, 'listado']);
+Route::get('/getPromocion/{id}', [PromocionController::class, 'promocionSeleccionada']);
+Route::get('/exportarPromocion/{finicio}/{ffinal}', [PromocionController::class, 'exportarPromocion']);
+Route::get('/exportarLegal/{finicio}/{ffinal}', [PromocionController::class, 'exportarLegal']);

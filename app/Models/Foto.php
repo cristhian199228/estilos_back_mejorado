@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Foto extends Model
 {
     use HasFactory;
+    public function Promocion()
+    {
+        return $this->hasMany(Promocion::class);
+    }
 }

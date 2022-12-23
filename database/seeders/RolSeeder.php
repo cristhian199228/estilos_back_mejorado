@@ -18,13 +18,13 @@ class RolSeeder extends Seeder
         //
         Rol::create(
             [
-                'descripcion' => 'administrador',
+                'descripcion' => 'Usuario',
                 'estado' => '1',
             ],
         );
         Rol::create(
             [
-                'descripcion' => 'usuario',
+                'descripcion' => 'Administrador',
                 'estado' => '1',
             ],
         );

@@ -9,9 +9,49 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Models\Establecimiento;
 use App\Models\Promocion;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PromocionExport;
+use App\Exports\PromocionExportLegales;
+
 
 class PromocionController extends Controller
 {
+
+    public function listado(Request $request)
+    {
+        $promocion = Promocion::with('User.Establecimiento')
+            ->whereBetween(DB::raw('DATE(created_at)'), [$request->finicio, $request->ffinal])
+            ->get();
+
+        foreach ($promocion as $ficha) {
+            $ficha->fecha = Carbon::parse($ficha->created_at)->format('d-m-Y');
+        }
+        $respuesta = [
+            'code' => 200,
+            'status' => 'success',
+            'data' => $promocion
+        ];
+        return response($respuesta, $respuesta['code']);
+    }
+    public function promocionSeleccionada(Int $id)
+    {
+        $promocion = Promocion::with('User.Establecimiento')
+            ->with('Foto')
+            ->where('id', $id)
+            ->first();
+
+        $promocion->fecha = Carbon::parse($promocion->created_at)->format('d-m-Y');
+
+        $respuesta = [
+            'code' => 200,
+            'status' => 'success',
+            'data' => $promocion
+        ];
+        return response($respuesta, $respuesta['code']);
+    }
+
     public function guardarPromocion(Request $request)
     {
         $promocion = new Promocion();
@@ -34,5 +74,23 @@ class PromocionController extends Controller
             'message' => 'Promocion Grabada Correctamente',
             'promocion' => $promocion
         ]);
+    }
+
+    public function exportarPromocion(Request $request)
+    {
+
+        $promocion = Promocion::with('User.Establecimiento')
+            ->whereBetween(DB::raw('DATE(created_at)'), [$request->finicio, $request->ffinal])
+            ->get();
+        return Excel::download(new PromocionExport($promocion), 'promocion.xlsx');
+    }
+
+    public function exportarLegal(Request $request)
+    {
+
+        $fichas =  Promocion::with('User.Establecimiento')
+            ->whereBetween(DB::raw('DATE(created_at)'), [$request->finicio, $request->ffinal])
+            ->get();
+        return Excel::download(new PromocionExportLegales($fichas), 'promocion_legales.xlsx');
     }
 }

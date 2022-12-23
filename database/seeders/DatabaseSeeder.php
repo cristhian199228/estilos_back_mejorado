@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
             RubroSeeder::class,
             RolSeeder::class,
             EstablecimientoSeeder::class,
-            RolSeeder::class,
             UserSeeder::class,
             PlantillaSeeder::class
          ]);
