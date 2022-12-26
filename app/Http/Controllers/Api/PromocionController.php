@@ -75,10 +75,20 @@ class PromocionController extends Controller
             'promocion' => $promocion
         ]);
     }
+    public function editarPromocion(Request $request)
+    {
+        $promocion = Promocion::find($request->id);
+        $promocion->json  = $request['json'];
+        $promocion->save();
+
+        return response([
+            'message' => 'Promocion Editada Correctamente',
+            'promocion' => $promocion
+        ]);
+    }
 
     public function exportarPromocion(Request $request)
     {
-
         $promocion = Promocion::with('User.Establecimiento')
             ->whereBetween(DB::raw('DATE(created_at)'), [$request->finicio, $request->ffinal])
             ->get();
@@ -87,10 +97,21 @@ class PromocionController extends Controller
 
     public function exportarLegal(Request $request)
     {
-
         $fichas =  Promocion::with('User.Establecimiento')
             ->whereBetween(DB::raw('DATE(created_at)'), [$request->finicio, $request->ffinal])
             ->get();
         return Excel::download(new PromocionExportLegales($fichas), 'promocion_legales.xlsx');
+    }
+
+    public function cambiarEstado(Request $request)
+    {
+        $promocion = Promocion::find($request['id']);
+        $promocion->estado_solicitud  = $request['estado'];
+        $promocion->save();
+
+        return response([
+            'message' => 'Estado Cambiado Correctamente',
+            'promocion' => $promocion
+        ]);
     }
 }

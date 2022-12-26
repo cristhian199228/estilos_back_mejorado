@@ -27,6 +27,25 @@ class FotoController extends Controller
         ];
         return response($respuesta, $respuesta['code']);
     }
+    public function getFotoRubroAdmin(int $id)
+    {
+        if ($id == 0) {
+            $foto = Foto::with('Promocion')
+                ->with('Rubro')
+                ->get();
+        } else {
+            $foto = Foto::where('rubro_id', $id)
+                ->with('Promocion')
+                ->with('Rubro')
+                ->get();
+        }
+        $respuesta = [
+            'code' => 200,
+            'status' => 'success',
+            'data' => $foto
+        ];
+        return response($respuesta, $respuesta['code']);
+    }
     public function MostrarFoto(string $ruta)
     {
         $file = '/APPE_I/' . $ruta;
@@ -59,7 +78,7 @@ class FotoController extends Controller
         Storage::disk('fotos')->put('/APPE_I/' . $unique_name, $photo);
         $foto = new Foto();
         $foto->rubro_id = $request->idrubro;
-        $foto->ruta= $unique_name;
+        $foto->ruta = $unique_name;
         $foto->save();
 
         $respuesta = [
@@ -76,11 +95,24 @@ class FotoController extends Controller
         $img = str_replace(' ', '+', $img);
         $image = base64_decode($img);
         $foto = Foto::find($request->foto_id);
-        Storage::disk('fotos')->put('/APPE_I/'.$foto->ruta, $image);
+        Storage::disk('fotos')->put('/APPE_I/' . $foto->ruta, $image);
         $respuesta = [
             'code' => 200,
             'status' => 'success',
             'path' => $foto->ruta,
+
+        ];
+        return response($respuesta, $respuesta['code']);
+    }
+    public function cambiarRubroFoto(Request $request)
+    {
+        $foto = Foto::find($request->foto_id);
+        $foto->rubro_id = $request->rubro_id;
+        $foto->save();
+        $respuesta = [
+            'code' => 200,
+            'status' => 'success',
+            'path' => $foto,
 
         ];
         return response($respuesta, $respuesta['code']);

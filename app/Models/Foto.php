@@ -12,4 +12,8 @@ class Foto extends Model
     {
         return $this->hasMany(Promocion::class);
     }
+    public function Rubro()
+    {
+        return $this->belongsTo(Rubro::class);
+    }
 }

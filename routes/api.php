@@ -45,3 +45,7 @@ Route::get('/getPromociones/{finicio}/{ffinal}', [PromocionController::class, 'l
 Route::get('/getPromocion/{id}', [PromocionController::class, 'promocionSeleccionada']);
 Route::get('/exportarPromocion/{finicio}/{ffinal}', [PromocionController::class, 'exportarPromocion']);
 Route::get('/exportarLegal/{finicio}/{ffinal}', [PromocionController::class, 'exportarLegal']);
+Route::post('/editarPromocion', [PromocionController::class, 'editarPromocion']);
+Route::post('/cambiarEstado', [PromocionController::class, 'cambiarEstado']);
+Route::get('/getFotoRubroAdmin/{id}', [FotoController::class, 'getFotoRubroAdmin']);
+Route::post('/cambiarRubroFoto', [FotoController::class, 'cambiarRubroFoto']);
