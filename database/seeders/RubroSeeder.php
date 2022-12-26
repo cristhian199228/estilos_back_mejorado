@@ -22,5 +22,11 @@ class RubroSeeder extends Seeder
                 'estado' => '1',
             ],
         );
+        Rubro::create(
+            [
+                'descripcion' => 'OPTICAS',
+                'estado' => '1',
+            ],
+        );
     }
 }
