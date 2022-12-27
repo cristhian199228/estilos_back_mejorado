@@ -117,4 +117,14 @@ class FotoController extends Controller
         ];
         return response($respuesta, $respuesta['code']);
     }
+    public function eliminarFoto(Request $request)
+    {
+        $foto = Foto::find($request['id']);
+        $foto->delete();
+        $respuesta = [
+            'code' => 200,
+            'status' => 'success',
+        ];
+        return response($respuesta, $respuesta['code']);
+    }
 }

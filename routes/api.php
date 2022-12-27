@@ -49,3 +49,4 @@ Route::post('/editarPromocion', [PromocionController::class, 'editarPromocion'])
 Route::post('/cambiarEstado', [PromocionController::class, 'cambiarEstado']);
 Route::get('/getFotoRubroAdmin/{id}', [FotoController::class, 'getFotoRubroAdmin']);
 Route::post('/cambiarRubroFoto', [FotoController::class, 'cambiarRubroFoto']);
+Route::post('/eliminarFoto', [FotoController::class, 'eliminarFoto']);
