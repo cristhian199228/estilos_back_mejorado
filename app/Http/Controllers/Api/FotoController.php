@@ -94,12 +94,19 @@ class FotoController extends Controller
         $img = str_replace('data:image/jpeg;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $image = base64_decode($img);
+
+        $imageName = Str::random(10) . '.' . 'jpg';
+        $unique_name = md5($imageName . time()) . '.jpg';
+
         $foto = Foto::find($request->foto_id);
-        Storage::disk('fotos')->put('/APPE_I/' . $foto->ruta, $image);
+        $foto->ruta = $unique_name;
+        $foto->save();
+
+        Storage::disk('fotos')->put('/APPE_I/' . $unique_name, $image);
         $respuesta = [
             'code' => 200,
             'status' => 'success',
-            'path' => $foto->ruta,
+            'data' => $foto,
 
         ];
         return response($respuesta, $respuesta['code']);
