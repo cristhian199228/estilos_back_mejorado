@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('foto_id')->constrained();
             $table->foreignId('plantilla_id')->constrained();
+            $table->integer('usar_texto_establecimiento');
             $table->integer('estado_solicitud');
             $table->string('direccion');
             $table->string('telefono',15);

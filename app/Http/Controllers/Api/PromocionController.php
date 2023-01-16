@@ -59,6 +59,7 @@ class PromocionController extends Controller
         $promocion->foto_id = $request['foto_id'];
         $promocion->plantilla_id  = $request['plantilla_id'];
         $promocion->estado_solicitud  = '1';
+        $promocion->usar_texto_establecimiento  = $request['usar_texto_establecimiento'];
         $promocion->direccion  = $request['direccion'];
         $promocion->telefono  = $request['celular'];
         $promocion->horario  = $request['horario'];
