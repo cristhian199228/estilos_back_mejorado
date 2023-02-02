@@ -42,5 +42,31 @@ class EstablecimientoSeeder extends Seeder
                 'estado' => '1',
             ],
         );
+        Establecimiento::create(
+            [
+                'rubro_id' => '2',
+                'ruc' => '20100205574',
+                'razon_social' => 'OPTICA S.A.C',
+                'nombre_comercial' => 'OPTICA',
+                'horario_atencion' => 'de lunes a viernes',
+                'direccion' => 'calle S/N',
+                'telefono' => '054383730',
+                'ruta_logo' => '',
+                'estado' => '1',
+            ],
+        );
+        Establecimiento::create(
+            [
+                'rubro_id' => '3',
+                'ruc' => '20100205573',
+                'razon_social' => 'RADIOSHACK S.A.C',
+                'nombre_comercial' => 'RADIOSHACK ',
+                'horario_atencion' => 'de lunes a viernes',
+                'direccion' => 'calle S/N',
+                'telefono' => '054383730',
+                'ruta_logo' => '',
+                'estado' => '1',
+            ],
+        );
     }
 }
