@@ -36,12 +36,13 @@ Route::get('/getPlantillas', [PlantillaController::class, 'listado']);
 Route::get('/mostrarFotoPlantilla/{ruta}', [PlantillaController::class, 'mostrarFotoPlantilla']);
 Route::post('/subirLogo', [EstablecimientoController::class, 'subirLogo']);
 Route::get('/mostrarLogo/{ruta}', [EstablecimientoController::class, 'mostrarLogo']);
-Route::post('/guardarPromocion', [PromocionController::class, 'guardarPromocion']);
+Route::post('/guardarPromocion', [PromocionController::class, 'guardarPromocion'])->middleware('auth:sanctum');
 
 /////////////////////ADMIN/////////////////////////////////////////
 
 Route::post('/loginadmin', [UserController::class, 'loginadmin']);
-Route::get('/getPromociones/{finicio}/{ffinal}', [PromocionController::class, 'listado']);
+Route::get('/getPromociones/{finicio}/{ffinal}', [PromocionController::class, 'listado'])->middleware('auth:sanctum');
+Route::get('/getPromocionesAdministrador/{finicio}/{ffinal}', [PromocionController::class, 'listadoAdministrador']);
 Route::get('/getPromocion/{id}', [PromocionController::class, 'promocionSeleccionada']);
 Route::get('/exportarPromocion/{finicio}/{ffinal}', [PromocionController::class, 'exportarPromocion']);
 Route::get('/exportarLegal/{finicio}/{ffinal}', [PromocionController::class, 'exportarLegal']);

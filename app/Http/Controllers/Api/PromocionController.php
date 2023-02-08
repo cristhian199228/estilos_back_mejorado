@@ -23,6 +23,7 @@ class PromocionController extends Controller
     {
         $promocion = Promocion::with('User.Establecimiento')
             ->whereBetween(DB::raw('DATE(created_at)'), [$request->finicio, $request->ffinal])
+            ->where('user_id', $request->user()->id)
             ->get();
 
         foreach ($promocion as $ficha) {
@@ -35,6 +36,24 @@ class PromocionController extends Controller
         ];
         return response($respuesta, $respuesta['code']);
     }
+    
+    public function listadoAdministrador(Request $request)
+    {
+        $promocion = Promocion::with('User.Establecimiento')
+            ->whereBetween(DB::raw('DATE(created_at)'), [$request->finicio, $request->ffinal])
+            ->get();
+
+        foreach ($promocion as $ficha) {
+            $ficha->fecha = Carbon::parse($ficha->created_at)->format('d-m-Y');
+        }
+        $respuesta = [
+            'code' => 200,
+            'status' => 'success',
+            'data' => $promocion
+        ];
+        return response($respuesta, $respuesta['code']);
+    }
+
     public function promocionSeleccionada(Int $id)
     {
         $promocion = Promocion::with('User.Establecimiento')
@@ -55,7 +74,7 @@ class PromocionController extends Controller
     public function guardarPromocion(Request $request)
     {
         $promocion = new Promocion();
-        $promocion->user_id = '1';
+        $promocion->user_id = $request->user()->id;
         $promocion->foto_id = $request['foto_id'];
         $promocion->plantilla_id  = $request['plantilla_id'];
         $promocion->estado_solicitud  = '1';
