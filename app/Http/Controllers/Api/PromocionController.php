@@ -87,6 +87,7 @@ class PromocionController extends Controller
         $promocion->acepta  = $request['acepta'];
         $promocion->estado  = '1';
         $promocion->json  = $request['json'];
+        $promocion->ruta_logo  = $request['ruta_logo'];
         $promocion->descargas  = '0';
         $promocion->save();
 
@@ -99,6 +100,7 @@ class PromocionController extends Controller
     {
         $promocion = Promocion::find($request->id);
         $promocion->json  = $request['json'];
+        $promocion->usar_texto_establecimiento  = $request['usar_texto_establecimiento'];
         $promocion->save();
 
         return response([
