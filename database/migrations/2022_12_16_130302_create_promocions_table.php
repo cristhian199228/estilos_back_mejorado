@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('usar_texto_establecimiento');
             $table->integer('estado_solicitud');
             $table->string('direccion');
-            $table->string('telefono',15);
+            $table->string('telefono', 15);
             $table->string('horario');
             $table->string('vigencia');
             $table->string('restricciones');
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('estado');
             $table->json('json');
             $table->string('descargas');
+            $table->string('ruta_logo')->nullable();
             $table->timestamps();
         });
     }

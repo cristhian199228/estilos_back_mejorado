@@ -17,7 +17,7 @@
         @foreach($promociones as $promocion)
         <tr>
             <td>{{ $promocion->created_at }}</td>
-            <td>{{ $promocion->nombre_empresa }}</td>
+            <td>{{  $promocion->user->establecimiento->razon_social }}</td>
             @if($promocion->estado_solicitud == 1)
             <td>REVISION</td>
             @endif
